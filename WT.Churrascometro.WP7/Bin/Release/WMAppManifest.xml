@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
+  <App xmlns="" ProductID="{b0024622-3dfd-4344-a81a-e09ae4ad99d9}" Title="Churrascômetro" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="William Thiago" Description="Está em dúvida sobre a quantidade necessária de cada item do seu churrasco?&#xD;&#xA;Deixa pro Churrascômetro calcular. Aproveite o seu churrasco com os amigos, e se puder, nos chame!&#xD;&#xA;&#xD;&#xA;Em breve, mais itens, maior acurácia nos cálculos e envio por e-mail!" Publisher="William Thiago" BitsPerPixel="16">
+    <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
+    <Capabilities>
+    </Capabilities>
+    <Tasks>
+      <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
+    </Tasks>
+    <Tokens>
+      <PrimaryToken TokenID="WT.Churrascometro.WP7Token" TaskName="_default">
+        <TemplateType5>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
+          <Count>0</Count>
+          <Title>Churrascômetro</Title>
+        </TemplateType5>
+      </PrimaryToken>
+    </Tokens>
+  </App>
+</Deployment>
+<!-- WPSDK Version 7.1.8773.0 -->

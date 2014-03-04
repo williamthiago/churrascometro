@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Frangos>
+  <Frango Nome="Sobrecoxa de Frango" Peso="0.25"></Frango>
+  <Frango Nome="Coxa de Frango" Peso="0.1"></Frango>
+  <Frango Nome="Coxinha da Asa de Frango" Peso="0.3"></Frango>
+  <Frango Nome="Coração de Frango" Peso="0.35"></Frango>
+</Frangos>
