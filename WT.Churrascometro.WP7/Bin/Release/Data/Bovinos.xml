@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Bovinos>
-  <Bovino Nome="Picanha" Peso="0.4"></Bovino>
-  <Bovino Nome="Fraldinha" Peso="0.2"></Bovino>
-  <Bovino Nome="Maminha" Peso="0.2"></Bovino>
-  <Bovino Nome="Alcatra" Peso="0.15"></Bovino>
-  <Bovino Nome="Costela" Peso="0.05"></Bovino>
-</Bovinos>

@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Suinos>
-  <Suino Nome="Linguiça" Peso="1"></Suino>
-  <Suino Nome="Picanha Suína" Peso="0.35"></Suino>
-  <Suino Nome="Costela Suína" Peso="0.35"></Suino>
-  <Suino Nome="Bisteca Suína" Peso="0.15"></Suino>
-  <Suino Nome="Lombo Suína" Peso="0.15"></Suino>
-</Suinos>
