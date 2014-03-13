@@ -2,7 +2,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:WT.Churrascometro.WP7.ViewModels">
-    
+
+    <local:MainViewModel.Opcoes>
+        <local:OpcaoViewModel Nome="Meus amigos bebem muito" Marcado="True" Peso="4" />
+        <local:OpcaoViewModel Nome="Minhas amigas bebem muito" Marcado="True" Peso="3" />
+    </local:MainViewModel.Opcoes>
     <local:MainViewModel.Bovinos>
         <local:CarneViewModel Nome="Picanha" Marcado="True" Peso="1" />
         <local:CarneViewModel Nome="Picanha" Marcado="True" Peso="1" />

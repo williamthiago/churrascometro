@@ -15,13 +15,13 @@ namespace WT.Churrascometro.WP7.ViewModels
             PropertyChanged += CarneViewModelPropertyChanged;
         }
 
-        public string QuantidadeCalculada { get; set; }
+        //public string QuantidadeCalculada { get; set; }
 
         void CarneViewModelPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Marcado")
             {
-                QuantidadeCalculada = 100.ToString();
+                //QuantidadeCalculada = 100.ToString();
             }
         }
     }

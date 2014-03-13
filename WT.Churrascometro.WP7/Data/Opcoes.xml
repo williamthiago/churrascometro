@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Opcoes>
+  <Opcao Nome="Meus amigos bebem muito" Peso="2" Marcado="True"></Opcao>
+  <Opcao Nome="Minhas amigas bebem muito" Peso="1.5"></Opcao>
+</Opcoes>

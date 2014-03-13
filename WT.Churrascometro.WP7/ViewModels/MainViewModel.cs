@@ -18,6 +18,7 @@ namespace WT.Churrascometro.WP7.ViewModels
             this.Frangos = new ObservableCollection<CarneViewModel>();
             this.Pessoas = new ObservableCollection<PessoaViewModel>();
             this.Acompanhamentos = new ObservableCollection<AcompanhamentoViewModel>();
+            this.Opcoes = new ObservableCollection<OpcaoViewModel>();
             this.Resultados = new ObservableCollection<ResultadoViewModel>();
         }
 
@@ -40,7 +41,7 @@ namespace WT.Churrascometro.WP7.ViewModels
         public ObservableCollection<CarneViewModel> Frangos { get; private set; }
         public ObservableCollection<AcompanhamentoViewModel> Acompanhamentos { get; private set; }
         public ObservableCollection<ResultadoViewModel> Resultados { get; private set; }
-
+        public ObservableCollection<OpcaoViewModel> Opcoes { get; private set; }
         public void Calcular()
         {
             this.Resultados.Clear();
@@ -108,7 +109,47 @@ namespace WT.Churrascometro.WP7.ViewModels
                 this.Resultados.Add(new ResultadoViewModel() { Item = frango.Nome, Quantidade = string.Format("{0} kg", quantidade) });
             }
 
-            foreach (var acompanhamento in Acompanhamentos.Where(b => b.Marcado))
+            var bebidas = Acompanhamentos
+                .Where(b => new[] {"Cerveja", "Refrigerante"}.Contains(b.Nome))
+                .Where(b => b.Marcado)
+                .ToList();
+
+            foreach (var bebida in bebidas)
+            {
+                var ehCerveja = bebida.Nome.Contains("Cerveja");
+
+                var amigosBebemMais = this.Opcoes.Single(o => o.Nome.Contains("Meus amigos bebem muito"));
+                var amigosBebemMaisPeso = amigosBebemMais.Marcado && ehCerveja ? amigosBebemMais.Peso : 1;
+                var amigasBebemMais = this.Opcoes.Single(o => o.Nome.Contains("Minhas amigas bebem muito"));
+                var amigasBebemMaisPeso = amigasBebemMais.Marcado && ehCerveja ? amigasBebemMais.Peso : 1;
+
+                var totalItens = (from b in bebidas
+                    let cerveja = b.Nome.Contains("Cerveja")
+                    let pesoCervejaHomem = amigosBebemMais.Marcado && cerveja ? amigosBebemMais.Peso : 1
+                    let pesoCervejaMulher = amigasBebemMais.Marcado && cerveja ? amigasBebemMais.Peso : 1
+                    select Homens.Quantidade*b.PesoA*pesoCervejaHomem +
+                           Mulheres.Quantidade*b.PesoB*pesoCervejaMulher +
+                           Criancas.Quantidade*b.PesoC).Sum();
+
+                decimal pesoItem = Homens.Quantidade * bebida.PesoA * amigosBebemMaisPeso + Mulheres.Quantidade * bebida.PesoB * amigasBebemMaisPeso + Criancas.Quantidade * bebida.PesoC;
+
+                var divider = bebida.PesoD;
+
+                var quantidade = Math.Ceiling(
+                    (double)((Homens.Quantidade * bebida.PesoA +
+                     Mulheres.Quantidade * bebida.PesoB +
+                     Criancas.Quantidade * bebida.PesoC) * (pesoItem / totalItens) / divider));
+
+                quantidade = Math.Round(quantidade * 100) / 100;
+
+                var unidade = bebida.Medida;
+
+                this.Resultados.Add(new ResultadoViewModel() { Item = bebida.Nome, Quantidade = string.Format("{0} {1}{2}", quantidade, unidade, quantidade > 1 ? "s" : "") });
+            }
+
+            foreach (var acompanhamento in Acompanhamentos
+                .Where(b => !new[] { "Cerveja", "Refrigerante" }.Contains(b.Nome))
+                .Where(b => b.Marcado))
             {
 			    var divider = acompanhamento.PesoD;
 			    var unidade = acompanhamento.Medida;
@@ -117,7 +158,7 @@ namespace WT.Churrascometro.WP7.ViewModels
                     (double)((Homens.Quantidade * acompanhamento.PesoA +
                      Mulheres.Quantidade*acompanhamento.PesoB +
                      Criancas.Quantidade*acompanhamento.PesoC)/divider));
-			
+
                 this.Resultados.Add(new ResultadoViewModel() { Item = acompanhamento.Nome, Quantidade = string.Format("{0} {1}{2}", quantidade, unidade, quantidade > 1 ? "s" : "") });
             }
         }
@@ -137,6 +178,14 @@ namespace WT.Churrascometro.WP7.ViewModels
         
         public void LoadData()
         {
+            #region Opcoes
+
+            var opcoes = Deserialize<Opcoes>();
+            foreach (var opcao in opcoes.Itens)
+                this.Opcoes.Add(new OpcaoViewModel() { Nome = opcao.Nome, Peso = opcao.Peso });
+
+            #endregion
+
             #region Bovinos
 
             var bovinos = Deserialize<Bovinos>();

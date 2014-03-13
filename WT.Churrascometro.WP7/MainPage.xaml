@@ -19,7 +19,7 @@
         
         <controls:Panorama Name="panorama" Title="churrascômetro">
             <controls:Panorama.Background>
-                <ImageBrush ImageSource="panorama_churrasco.jpg" Stretch="None"/>
+                <ImageBrush ImageSource="panorama_churrasco.jpg" Stretch="None" Opacity=".7" />
             </controls:Panorama.Background>
 
             <controls:PanoramaItem Header="amigos">
@@ -42,6 +42,18 @@
                 </ListBox>
             </controls:PanoramaItem>
 
+            <controls:PanoramaItem Header="opções">
+                <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Opcoes}" Background="#66936A36">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0,0,0,0" Width="432" Height="90">
+                                <CheckBox Content="{Binding Nome}" IsChecked="{Binding Marcado, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Click="CheckBox_Checked" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </controls:PanoramaItem>
+            
             <controls:PanoramaItem Header="bovinos">
                 <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Bovinos}" Background="#66936A36">
                     <ListBox.ItemTemplate>
